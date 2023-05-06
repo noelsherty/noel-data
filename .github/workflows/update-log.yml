@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
       - uses: actions/checkout@v3
 
       - name: update file
@@ -27,12 +24,15 @@ jobs:
           fi
       - name: push
         run: |
+          git log
+
+      - name: push
+        run: |
           git config --local user.name github-actions[bot]
           git config --local user.email github-actions[bot]@users.noreply.github.com
           git status
           git add monthly.txt
           git commit -m "Monthly update"
-          git log
           git push origin
 
 
